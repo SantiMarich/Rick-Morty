@@ -1,0 +1,21 @@
+.about {
+  color: #e4e4e4;
+  width: 40%;
+  position: relative;
+  padding: 50px;
+  top: 90px;
+  left: 175px;
+}
+
+.titulo {
+  padding: 10px;
+  margin: 0px;
+}
+
+.parrafo {
+  font-size: 14px;
+  padding: 10px;
+  text-align: justify;
+  text-justify: auto;
+  top: 20px;
+}
