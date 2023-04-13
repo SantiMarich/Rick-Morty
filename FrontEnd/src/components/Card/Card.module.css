@@ -1,0 +1,120 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  width: 350px;
+  height: 390px;
+  margin: 20px 20px 20px 20px;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 0 20px 2px hsl(0, 0%, 0%);
+}
+
+.botones {
+  width: 100px;
+  height: 100%;
+  padding: 5px;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.botonClose {
+  color: #e4e4ee;
+  background: none;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  display: flex;
+  font-size: 18px;
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+}
+
+.botonFavoritos1 {
+  color: #e4e4ee;
+  background: none;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  font-size: 18px;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+}
+
+.botonFavoritos2 {
+  color: #e4e4e4;
+  background: none;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  font-size: 18px;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+}
+
+.imagenFondo {
+  width: 390px;
+  height: 390px;
+  position: absolute;
+  filter: contrast(125%);
+  transition: 0.8s;
+}
+
+.imagenFondo:hover {
+  transform: scale(1.2);
+  transition: 0.8s;
+}
+
+.contenido {
+  width: 350px;
+  height: 40px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 6px;
+  font-weight: lighter;
+  color: #e4e4ee;
+  background-color: rgb(2, 0, 10);
+  opacity: 95%;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.contenido:hover {
+  opacity: 100%;
+}
+
+.contenido .nombre {
+  font-size: 16px;
+  text-decoration: none;
+  color: #e4e4ee;
+  border: none;
+}
+
+h2 {
+  font-weight: 600;
+}
+
+button {
+  font-weight: 600;
+  cursor: pointer;
+}
