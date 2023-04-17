@@ -9,58 +9,71 @@ import axios from "axios";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Favorites from "./components/Favorites/Favorites";
 import style from "./App.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addCharacters,
+  addLocation,
+  searchCharacter,
+} from "../src/redux/actions";
 
 function App() {
-  const [characters, setCharacters] = useState([]);
+  const { characters } = useSelector((state) => state);
   const { pathname } = useLocation();
   const [access, setAccess] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!access) {
-      navigate("/");
-    }
-  }, [access]);
+  const location = useLocation();
+  const dispatch = useDispatch();
 
-  const username = "santiagomarich@gmail.com";
-  const password = "33814489";
+  useEffect(() => {
+    dispatch(addLocation(location.pathname));
+  }, [dispatch, location]);
+
+  useEffect(() => {
+    !access && navigate("/");
+  }, [navigate, access]);
 
   function onSearch(id) {
     axios
-      .get(`https://rickandmortyapi.com/api/character/${id}`)
+      .get(`http://localhost:3001/rickandmorty/character/${id}`)
       .then(({ data }) => {
-        if (data.name) {
-          let exist = characters.find((char) => char.id === data.id);
-          if (exist) {
-            window.alert("¡Personaje Repetido!");
-          } else {
-            setCharacters((oldChars) => [...oldChars, data]);
-          }
-        } else {
-          window.alert("¡No hay personajes con este ID!");
-        }
+        dispatch(searchCharacter(data));
+      })
+      .catch((error) => {
+        console.error(error);
+        return alert("El Personaje No Existe");
       });
   }
 
-  const onClose = (id) => {
-    setCharacters(characters.filter((char) => char.id !== id));
-  };
+  function onClose(id) {
+    const filterCharacters = characters.filter((ch) => ch.id !== id);
+    dispatch(addCharacters(filterCharacters));
+  }
 
-  const login = (userData) => {
-    if (userData.username === username && userData.password === password) {
-      setAccess(true);
-      if (pathname === "/") {
-        navigate("/home");
-      }
-    } else {
-      window.alert("Credenciales Incorrectas");
-    }
-  };
-
-  const logout = () => {
-    setAccess(false);
-    navigate("/");
-  };
+  function login(inputs) {
+    axios
+      .get(
+        `http://localhost:3001/rickandmorty/login?password=${inputs.password}&email=${inputs.username}`
+      )
+      .then(({ data }) => {
+        if (data.access) {
+          setAccess(data.access);
+          navigate("/home");
+        } else {
+          return alert("Credenciales Invalidas");
+        }
+      });
+  }
+  function logout() {
+    axios
+      .get(`http://localhost:3001/rickandmorty/login?password=1234&email=1234`)
+      .then(({ data }) => {
+        if (!data.access) {
+          setAccess(data.access);
+          navigate("/");
+        }
+      });
+  }
 
   return (
     <div className="App" style={{ padding: "20px" }}>

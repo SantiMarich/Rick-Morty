@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { addFavorite, getFavorites, removeFavorite } from "../../redux/actions";
+import { addFavorite, removeFavorite } from "../../redux/actions";
 import { useState } from "react";
 import { useEffect } from "react";
 import style from "./Card.module.css";
@@ -10,65 +10,29 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faHeart as fasFaHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as farFaHeart } from "@fortawesome/free-regular-svg-icons";
-import axios from "axios";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
-function Card({
-  id,
-  name,
-  status,
-  species,
-  gender,
-  origin,
-  onClose,
-  image,
-  // addFavorite,
-  // removeFavorite,
-  myFavorites,
-}) {
-  const [isFav, setIsFav] = useState(false);
+function Card(props) {
+  const { id, name, image, onClose } = props;
   const dispatch = useDispatch();
+  const [isFav, setIsFav] = useState(false);
+  const { myFavorites } = useSelector((s) => s);
 
-  const addFavorite = (character) => {
-    axios
-      .post("http//localhost:3001/rickandmorty/fav", character)
-      .then((res) => console.log("OK"));
-  };
-
-  const removeFavorite = async (id) => {
-    await axios.delete(`http//localhost:3001/rickandmorty/fav/${id}`);
-    dispatch(getFavorites());
-    alert("Eliminado con exito");
-  };
-
-  const handleFavorite = () => {
-    setIsFav(!isFav);
-    const isFavorite = myFavorites.find((fav) => fav.id === id);
-
-    if (isFavorite) {
-      removeFavorite(id);
+  function handleFavorite() {
+    if (isFav) {
+      setIsFav(false);
+      dispatch(removeFavorite(id));
     } else {
-      const character = {
-        id,
-        name,
-        status,
-        species,
-        gender,
-        origin,
-        onClose,
-        image,
-      };
-      addFavorite(character);
+      setIsFav(true);
+      dispatch(addFavorite(props));
     }
-  };
+  }
 
   useEffect(() => {
-    myFavorites.forEach((fav) => {
-      if (fav.id === id) {
-        setIsFav(true);
-      }
-    });
-  }, [myFavorites]);
+    const isFavorite = myFavorites.some((fav) => fav.id === id);
+    setIsFav(isFavorite);
+  }, [myFavorites, id]);
 
   return (
     <div className={style.container}>
@@ -101,9 +65,9 @@ function Card({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // addFavorite: (character) => {
-    //   dispatch(addFavorite(character));
-    // },
+    addFavorite: (character) => {
+      dispatch(addFavorite(character));
+    },
     removeFavorite: (id) => {
       dispatch(removeFavorite(id));
     },
