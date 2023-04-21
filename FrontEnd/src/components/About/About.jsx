@@ -16,16 +16,16 @@ function About() {
         información detallada sobre los mismos.
       </p>
       <p className={style.parrafo}>
-        Nuestro equipo de desarrolladores ha trabajado para crear una plataforma
+        Como desarrollador en formacion he trabajado para crear una plataforma
         interactiva y muy amigable para los usuarios, que permita una navegar
-        fácil, fluida e intuitivamente. Estamos comprometidos en mantener
+        fácil, fluida e intuitivamente. Estoy comprometido en mantener
         actualizada la información y brindar un servicio de calidad a nuestra
         comunidad.
       </p>
       <p className={style.parrafo}>
-        Para realizar este trabajo hemos utilizado diferentes herramientas,
-        entre estas se encuentran las aprendidas en el BootCamp Javascript |
-        React | Redux | CSS
+        Para realizar este trabajo he utilizado las diferentes herramientas
+        estudiadas en el Bootcamp de SoyHenry Javascript | React | Redux | CSS |
+        HTML | SQL | Node JS
       </p>
       <p className={style.parrafo}>
         ¡Ya eres parte de la comunidad de "Rick & Morty"!

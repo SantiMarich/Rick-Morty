@@ -77,30 +77,31 @@ function App() {
 
   return (
     <div className="App" style={{ padding: "20px" }}>
-      <div className={style.background}>
-        <div className={style.container}></div>
-        <div>
-          {pathname !== "/" && (
-            <Nav className="Nav" onSearch={onSearch} onLogout={logout} />
-          )}
-        </div>
-        <Routes>
-          <Route path="/" element={<Form login={login} />} />
-          <Route
-            path="/home"
-            element={
-              <Cards
-                className="Cards"
-                characters={characters}
-                onClose={onClose}
-              />
-            }
-          />
-          <Route path="/favorites" element={<Favorites />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/detail/:id" element={<Detail />} />
-        </Routes>
+      <div className={style.container}></div>
+      <div className={style.stars}></div>
+      <div className={style.stars2}></div>
+      <div className={style.stars3}></div>
+      <div>
+        {pathname !== "/" && (
+          <Nav className="Nav" onSearch={onSearch} onLogout={logout} />
+        )}
       </div>
+      <Routes>
+        <Route path="/" element={<Form login={login} />} />
+        <Route
+          path="/home"
+          element={
+            <Cards
+              className="Cards"
+              characters={characters}
+              onClose={onClose}
+            />
+          }
+        />
+        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/detail/:id" element={<Detail />} />
+      </Routes>
     </div>
   );
 }

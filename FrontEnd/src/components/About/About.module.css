@@ -1,7 +1,7 @@
 .about {
   width: 97.5%;
   height: 95%;
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   padding: 50px;
