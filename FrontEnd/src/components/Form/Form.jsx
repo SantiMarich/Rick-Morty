@@ -36,16 +36,7 @@ function Form({ login }) {
     <div className={style.contenedor}>
       <div className={style.imagenes}>
         <img src={imagen} alt="none" className={style.rick}></img>
-        <p className={style.textos}>
-          "El universo es básicamente un animal. Se alimenta de lo ordinario.
-          Crea infinitos idiotas solo para comérselos"
-        </p>
-        <p className={style.textos}>Rick Sanchez</p>
         <img src={imagen2} alt="none" className={style.morty}></img>
-        <p className={style.textos}>
-          "El universo es muy grande para preocuparse por algo tan pequeño"
-        </p>
-        <p className={style.textos}>Morty Smith</p>
       </div>
       <div className={style.content}>
         <form className={style.form} onSubmit={submitHandler}>
